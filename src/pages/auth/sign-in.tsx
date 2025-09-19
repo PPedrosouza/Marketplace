@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { toast } from "sonner"
+import { Link } from 'react-router-dom'
 
 const signInForm = z.object({
     email: z.email(),
@@ -69,7 +70,7 @@ export function SignIn() {
                                     <Input
                                         id="password"
                                         type="password"
-                                        placeholder="Sua senha de acesso"
+                                        placeholder="Senha de acesso"
                                         className="border-0 shadow-none"
                                         {...register("password")} />
                                     <img src={view} alt="" className="w-6 h-6" />
@@ -84,8 +85,8 @@ export function SignIn() {
 
                         <footer className="w-full h-[44px] flex flex-col space-y-3">
                             <p className="text-gray-500 text-md">Ainda não tem uma conta?</p>
-                            <Button className="w-full h-[44px] justify-between" variant="outline">
-                                <p className="text-orange-500">Cadastrar</p>
+                            <Button className="w-full h-[44px] justify-between border-orange-500" variant="outline">
+                                <Link to='/sign-up' className="text-orange-500">Cadastrar</Link>
                                 <img src={arrowRight2} alt="arrow-right" className="w-6 h-6" />
                             </Button>
                         </footer>
