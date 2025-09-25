@@ -33,16 +33,18 @@ const signUpForm = z.object({
 type SignUpForm = z.infer<typeof signUpForm>
 
 export function SignUp() {
+    const navigate = useNavigate()
+
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
 
     async function handleSignUp(data: SignUpForm) {
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000))
             console.log(data)
-            toast.success("Enviamos um link de autenticação para seu e-mail.", {
+            toast.success("Cadastro concluído com sucesso!", {
                 action: {
-                    label: "Reenviar",
-                    onClick: () => handleSignUp(data)
+                    label: "Login",
+                    onClick: () => navigate('/sign-in')
                 }
             })
         } catch (error) {
@@ -51,7 +53,7 @@ export function SignUp() {
     }
 
     return (
-        <div className="w-[563px] h-[696px] bg-background rounded-lg overflow-y-auto">
+        <div className="w-[563px] md:h-[696px] h-full md:m-0 m-5 bg-background rounded-lg md:overflow-y-auto overflow-y-hidden ">
             <Helmet title="Cadastro" />
             <div className="p-20">
                 <div className="w-full flex flex-col justify-start items-start gap-6">
