@@ -17,6 +17,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { toast } from "sonner"
+import { HugeiconsIcon } from '@hugeicons/react';
+import { AccessIcon, ArrowRight02Icon, CallIcon, ImageUploadIcon, Mail02Icon, User02Icon, User03Icon, ViewIcon } from '@hugeicons/core-free-icons';
+import { useState } from 'react'
 
 const signUpForm = z.object({
     file: z
@@ -36,7 +39,8 @@ export function SignUp() {
     const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
-
+    const [showPassword, setShowPassword] = useState(false)
+    
     async function handleSignUp(data: SignUpForm) {
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -68,7 +72,7 @@ export function SignUp() {
                                 <div className="flex flex-col gap-6">
                                     <h3 className="text-2xl font-bold tracking-tight text-md">Perfil</h3>
                                     <label className="w-[7.5rem] aspect-square overflow-hidden bg-red-100 rounded-xl flex items-center justify-center" htmlFor="file">
-                                        <img src={imageUpload} alt="" className="size-8 text-orange-500" />
+                                        <HugeiconsIcon icon={ImageUploadIcon} size={24} color="currentColor" className="size-8 text-orange-500" />
                                         <Input
                                             id="file"
                                             className="hidden"
@@ -78,8 +82,8 @@ export function SignUp() {
                                     </label>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="name">NOME</Label>
-                                    <div className="flex items-center gap-2 border-b-1">
-                                        <img src={user} alt="" className="w-6 h-6" />
+                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
+                                        <HugeiconsIcon icon={User03Icon} size={24} color="currentColor" />
                                         <Input
                                             id="name"
                                             type="text"
@@ -90,8 +94,8 @@ export function SignUp() {
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="phone">TELEFONE</Label>
-                                    <div className="flex items-center gap-2 border-b-1">
-                                        <img src={call} alt="" className="w-6 h-6" />
+                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
+                                        <HugeiconsIcon icon={CallIcon} size={24} color="currentColor" />
                                         <Input
                                             id="telephone"
                                             type="text"
@@ -106,8 +110,8 @@ export function SignUp() {
                                     <h3 className="text-2xl font-bold tracking-tight text-md">Acesso</h3>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="email">E-MAIL</Label>
-                                    <div className="flex items-center gap-2 border-b-1">
-                                        <img src={mailLetter2} alt="" className="w-6 h-6" />
+                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
+                                        <HugeiconsIcon icon={Mail02Icon} size={24} color="currentColor" />
                                         <Input
                                             id="email"
                                             type="email"
@@ -118,34 +122,54 @@ export function SignUp() {
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="password">SENHA</Label>
-                                    <div className="flex items-center gap-2 border-b-1">
-                                        <img src={access} alt="" className="w-6 h-6" />
+                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
+                                        <HugeiconsIcon icon={AccessIcon} size={24} color="currentColor" />
                                         <Input
                                             id="password"
-                                            type="password"
+                                            type={showPassword ? "text" : "password"}
                                             placeholder="Senha de acesso"
                                             className="border-0 shadow-none"
                                             {...register("password")} />
-                                        <img src={view} alt="" className="w-6 h-6" />
+                                        <button 
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="focus:outline-none"
+                                        >
+                                            <HugeiconsIcon 
+                                                icon={ViewIcon} 
+                                                size={24} 
+                                                color="currentColor" 
+                                            />
+                                        </button>
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="password">CONFIRMAR SENHA</Label>
-                                    <div className="flex items-center gap-2 border-b-1">
-                                        <img src={access} alt="" className="w-6 h-6" />
+                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
+                                        <HugeiconsIcon icon={AccessIcon} size={24} color="currentColor" />
                                         <Input
-                                            id="password"
-                                            type="password"
+                                            id="confirmPassword"
+                                            type={showPassword ? "text" : "password"}
                                             placeholder="Confirme a senha"
                                             className="border-0 shadow-none"
                                             {...register("password")} />
-                                        <img src={view} alt="" className="w-6 h-6" />
+                                        <button 
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="focus:outline-none"
+                                        >
+                                            <HugeiconsIcon 
+                                                icon={ViewIcon} 
+                                                size={24} 
+                                                color="currentColor" 
+                                            />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <Button disabled={isSubmitting} className="w-full h-[44px] justify-between" type="submit">
                                 <p className="text-white">Cadastrar</p>
-                                <img src={arrowRight2} alt="arrow-right" className="w-6 h-6 text-orange-500" />
+                                <HugeiconsIcon icon={ArrowRight02Icon} size={24} color="currentColor" />
                             </Button>
                         </form>
 
@@ -153,7 +177,7 @@ export function SignUp() {
                             <p className="text-gray-500 text-md">Já tem uma conta?</p>
                             <Button className="w-full h-[44px] justify-between border-orange-500" variant="outline">
                                 <Link to='/sign-in' className="text-orange-500">Acessar</Link>
-                                <img src={arrowRight2} alt="arrow-right" className="w-6 h-6" />
+                                <HugeiconsIcon icon={ArrowRight02Icon} size={24} color="currentColor" className='text-orange-500' />
                             </Button>
                         </footer>
                     </div>

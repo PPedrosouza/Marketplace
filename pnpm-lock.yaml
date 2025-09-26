@@ -11,6 +11,12 @@ importers:
       '@hookform/resolvers':
         specifier: ^5.2.2
         version: 5.2.2(react-hook-form@7.62.0(react@19.1.1))
+      '@hugeicons/core-free-icons':
+        specifier: ^1.1.0
+        version: 1.1.0
+      '@hugeicons/react':
+        specifier: ^1.1.1
+        version: 1.1.1(react@19.1.1)
       '@radix-ui/react-label':
         specifier: ^2.1.7
         version: 2.1.7(@types/react-dom@19.1.9(@types/react@19.1.13))(@types/react@19.1.13)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -349,6 +355,14 @@ packages:
     resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
     peerDependencies:
       react-hook-form: ^7.55.0
+
+  '@hugeicons/core-free-icons@1.1.0':
+    resolution: {integrity: sha512-xLLQcIiLKvazXjjhnO2qZ/piOo9yxAFQ5A67XP+HNpvFrO5hVEGv1qebHSHPK1tbSST9dZF3fhH4AfdyumqJsg==}
+
+  '@hugeicons/react@1.1.1':
+    resolution: {integrity: sha512-BAbFVtx0XZ/yF2poPLFn0N9Ji6ebV/MpI5+WRqooFp3smQDwpL+72m+BBs4KAM5djgWUpg12weyc5SJtTsOwsw==}
+    peerDependencies:
+      react: '>=16.0.0'
 
   '@isaacs/fs-minipass@4.0.1':
     resolution: {integrity: sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w==}
@@ -1272,6 +1286,12 @@ snapshots:
     dependencies:
       '@standard-schema/utils': 0.3.0
       react-hook-form: 7.62.0(react@19.1.1)
+
+  '@hugeicons/core-free-icons@1.1.0': {}
+
+  '@hugeicons/react@1.1.1(react@19.1.1)':
+    dependencies:
+      react: 19.1.1
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
