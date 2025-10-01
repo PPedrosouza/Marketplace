@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom'
 import marketplaceLogo from '../assets/icons/marketplace-logo.svg'
-import chartHistogram from '../assets/icons/chart-histogram.svg'
-import packageIcon from '../assets/icons/package.svg'
 import { NavLink } from './nav-link'
 
 import { HugeiconsIcon } from '@hugeicons/react';
@@ -9,11 +6,12 @@ import { PackageIcon } from '@hugeicons/core-free-icons';
 import { ChartHistogramIcon } from '@hugeicons/core-free-icons';
 import { PlusSignIcon } from '@hugeicons/core-free-icons';
 import { Button } from './ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 
 export function Header() {
     return (
-        <div className="border-b">
-            <div className="flex h-16 items-center gap-6 px-6">
+        <div className="border-b bg-red-50">
+            <div className="flex h-16 items-center justify-center text-center gap-6 px-6">
                 <img src={marketplaceLogo} alt="marketplaceLogo" className='h-15 w-15' />
 
                 <nav className='ml-auto flex items-center gap-4'>
@@ -29,11 +27,17 @@ export function Header() {
 
                 <div className='ml-auto flex items-center gap-4'>
                     <Button className="bg-orange-500 w-[157px] h-[40px]">
-                        <HugeiconsIcon icon={PlusSignIcon} size={24} color="currentColor"  />
+                        <HugeiconsIcon icon={PlusSignIcon} size={24} color="currentColor" />
                         Novo Produto
                     </Button>
 
-                    <img src="https://github.com/PPedrosouza.png" className='h-10 w-10 rounded-xl border-1 border-gray-100' />
+                    <Avatar className='h-10 w-10 rounded-xl border-1 border-gray-100'>
+                        <AvatarImage
+                            src="https://github.com/PPedrosouza.png"
+                            alt="@PPedrosouza"
+                        />
+                        <AvatarFallback>Avatar</AvatarFallback>
+                    </Avatar>
                 </div>
             </div>
         </div>

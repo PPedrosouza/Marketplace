@@ -5,7 +5,7 @@ import firstPageImage from '../../assets/images/first-page-image.png'
 export function AuthLayout() {
     return (
         <div className="min-h-screen md:grid md:grid-cols-2 antialiased">
-            <div className="h-full bg-muted p-10 text-muted-foreground flex flex-col">
+            <div className="h-full bg-red-50 p-10 text-muted-foreground flex flex-col">
                 <div className="flex items-center gap-3 text-lg text-foreground md:justify-start justify-center" >
                     <img src={marketplaceLogo} alt="marketplaceLogo" />
                     <div className="grid grid-cols-1 -red-500">
@@ -18,7 +18,7 @@ export function AuthLayout() {
                 </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center bg-muted flex-1">
+            <div className="flex flex-col items-center justify-center bg-red-50 flex-1">
                 <Outlet />
             </div>
         </div>
