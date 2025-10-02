@@ -31,6 +31,7 @@ const signUpForm = z.object({
     telephone: z.string(),
     email: z.email(),
     password: z.string(),
+    confirmPassword: z.string(),
 })
 
 type SignUpForm = z.infer<typeof signUpForm>
@@ -38,9 +39,16 @@ type SignUpForm = z.infer<typeof signUpForm>
 export function SignUp() {
     const navigate = useNavigate()
 
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignUpForm>()
+    const { register, handleSubmit, formState: { isSubmitting }, watch } = useForm<SignUpForm>()
     const [showPassword, setShowPassword] = useState(false)
-    
+
+    const nameValue = watch("name")
+    const telephoneValue = watch("telephone")
+
+    const emailValue = watch("email")
+    const passwordValue = watch("password")
+    const confirmPasswordValue = watch("confirmPassword")
+
     async function handleSignUp(data: SignUpForm) {
         try {
             await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -82,8 +90,12 @@ export function SignUp() {
                                     </label>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="name">NOME</Label>
-                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                        <HugeiconsIcon icon={User03Icon} size={24} color="currentColor" />
+                                    <div className="flex items-center gap-2 border-b-1 transition-colors">
+                                        <HugeiconsIcon
+                                            icon={User03Icon}
+                                            size={24}
+                                            color="currentColor"
+                                            className={`transition-colors ${nameValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`} />
                                         <Input
                                             id="name"
                                             type="text"
@@ -94,8 +106,13 @@ export function SignUp() {
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="phone">TELEFONE</Label>
-                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                        <HugeiconsIcon icon={CallIcon} size={24} color="currentColor" />
+                                    <div className="flex items-center gap-2 border-b-1 transition-colors">
+                                        <HugeiconsIcon
+                                            icon={CallIcon}
+                                            size={24}
+                                            color="currentColor"
+                                            className={`transition-colors ${telephoneValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
+                                        />
                                         <Input
                                             id="telephone"
                                             type="text"
@@ -110,8 +127,13 @@ export function SignUp() {
                                     <h3 className="text-2xl font-bold tracking-tight text-md">Acesso</h3>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="email">E-MAIL</Label>
-                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                        <HugeiconsIcon icon={Mail02Icon} size={24} color="currentColor" />
+                                    <div className="flex items-center gap-2 border-b-1 transition-colors">
+                                        <HugeiconsIcon
+                                            icon={Mail02Icon}
+                                            size={24}
+                                            color="currentColor"
+                                            className={`transition-colors ${emailValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
+                                        />
                                         <Input
                                             id="email"
                                             type="email"
@@ -122,45 +144,57 @@ export function SignUp() {
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="password">SENHA</Label>
-                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                        <HugeiconsIcon icon={AccessIcon} size={24} color="currentColor" />
+                                    <div className="flex items-center gap-2 border-b-1 transition-colors">
+                                        <HugeiconsIcon
+                                            icon={AccessIcon}
+                                            size={24}
+                                            color="currentColor"
+                                            className={`transition-colors ${passwordValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
+                                        />
                                         <Input
                                             id="password"
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Senha de acesso"
                                             className="border-0 shadow-none"
                                             {...register("password")} />
-                                        <button 
+                                        <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
                                             className="focus:outline-none"
                                         >
-                                            <HugeiconsIcon 
-                                                icon={ViewIcon} 
-                                                size={24} 
-                                                color="currentColor" 
+                                            <HugeiconsIcon
+                                                icon={ViewIcon}
+                                                size={24}
+                                                color="currentColor"
+                                                className={`transition-colors ${showPassword ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
                                             />
                                         </button>
                                     </div>
 
                                     <Label className="text-gray-500 text-sm" htmlFor="password">CONFIRMAR SENHA</Label>
-                                    <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                        <HugeiconsIcon icon={AccessIcon} size={24} color="currentColor" />
+                                    <div className="flex items-center gap-2 border-b-1 transition-colors">
+                                        <HugeiconsIcon
+                                            icon={AccessIcon}
+                                            size={24}
+                                            color="currentColor"
+                                            className={`transition-colors ${confirmPasswordValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
+                                        />
                                         <Input
                                             id="confirmPassword"
                                             type={showPassword ? "text" : "password"}
                                             placeholder="Confirme a senha"
                                             className="border-0 shadow-none"
-                                            {...register("password")} />
-                                        <button 
+                                            {...register("confirmPassword")} />
+                                        <button
                                             type="button"
                                             onClick={() => setShowPassword(!showPassword)}
                                             className="focus:outline-none"
                                         >
-                                            <HugeiconsIcon 
-                                                icon={ViewIcon} 
-                                                size={24} 
-                                                color="currentColor" 
+                                            <HugeiconsIcon
+                                                icon={ViewIcon}
+                                                size={24}
+                                                color="currentColor"
+                                                className={`transition-colors ${showPassword ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
                                             />
                                         </button>
                                     </div>

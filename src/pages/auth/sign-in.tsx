@@ -18,8 +18,11 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
-    const { register, handleSubmit, formState: { isSubmitting } } = useForm<SignInForm>()
+    const { register, handleSubmit, formState: { isSubmitting }, watch } = useForm<SignInForm>()
     const [showPassword, setShowPassword] = useState(false)
+
+    const emailValue = watch("email")
+    const passwordValue = watch("password")
 
     async function handleSignIn(data: SignInForm) {
         try {
@@ -50,8 +53,14 @@ export function SignIn() {
                         <form className="space-y-14 w-full justify-center pt-5" onSubmit={handleSubmit(handleSignIn)}>
                             <div className="space-y-2">
                                 <Label className="text-gray-500 text-sm">E-MAIL</Label>
-                                <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                    <HugeiconsIcon icon={Mail02Icon} size={24} color="currentColor" />
+                                <div className="flex items-center gap-2 border-b-1 transition-colors group">
+                                    <HugeiconsIcon
+                                        icon={Mail02Icon}
+                                        size={24}
+                                        color="currentColor"
+                                        className={`transition-colors ${emailValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}
+                                        focus:text-orange-500`}
+                                    />
                                     <Input
                                         id="email"
                                         type="email"
@@ -62,23 +71,30 @@ export function SignIn() {
                                 </div>
 
                                 <Label className="text-gray-500 text-sm">SENHA</Label>
-                                <div className="flex items-center gap-2 border-b-1 focus-within:text-orange-500 transition-colors">
-                                    <HugeiconsIcon icon={AccessIcon} size={24} color="currentColor" />
+                                <div className="flex items-center gap-2 border-b-1 transition-colors group">
+                                    <HugeiconsIcon
+                                        icon={AccessIcon}
+                                        size={24}
+                                        color="currentColor"
+                                        className={`transition-colors ${passwordValue ? 'text-orange-500' : 'text-muted-foreground group-focus-within:text-orange-500'}`}
+                                    />
                                     <Input
                                         id="password"
                                         type={showPassword ? "text" : "password"}
                                         placeholder="Senha de acesso"
                                         className="border-0 shadow-none"
-                                        {...register("password")} />
-                                    <button 
-                                        type="button" 
+                                        {...register("password")}
+
+                                    />
+                                    <button
+                                        type="button"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="focus:outline-none"
+                                        className="focus:outline-none cursor-pointer"
                                     >
-                                        <HugeiconsIcon 
-                                            icon={ViewIcon} 
-                                            size={24} 
-                                            color="currentColor" 
+                                        <HugeiconsIcon
+                                            icon={ViewIcon}
+                                            size={24}
+                                            color="currentColor"
                                         />
                                     </button>
                                 </div>
