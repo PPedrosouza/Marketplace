@@ -23,7 +23,7 @@ export function Products() {
 
                     <div className="flex flex-wrap space-y-1 gap-4 w-full">
                         {Array.from({ length: 6 }).map((_, i) => {
-                            return <ProductCard key={i} />
+                            return <ProductCard key={i} id={i} />
                         })}
                     </div>
                 </div>
