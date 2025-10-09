@@ -1,3 +1,6 @@
+import { HugeiconsIcon } from '@hugeicons/react';
+import { ArrowLeft02Icon, Cancel01Icon, Tick02Icon, UnavailableIcon, TagIcon, SaleTag01Icon, Store01Icon, UserMultipleIcon, UserMultiple02Icon, Calendar01Icon, Calendar02Icon, Calendar03Icon, Calendar04Icon } from '@hugeicons/core-free-icons';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 
 import {
@@ -10,51 +13,76 @@ import {
     YAxis,
 } from 'recharts';
 
+import colors from 'tailwindcss/colors'
+
 const data = [
-  { day: 1, visitors: 141 },
-  { day: 2, visitors: 100 },
-  { day: 3, visitors: 89 },
-  { day: 4, visitors: 91 },
-  { day: 5, visitors: 91 },
-  { day: 6, visitors: 91 },
-  { day: 7, visitors: 91 },
-  { day: 8, visitors: 91 },
-  { day: 9, visitors: 91 },
-  { day: 10, visitors: 91 },
+  { day: 9, dayInFull: '09 de outubro', visitors: 141 },
+  { day: 10, dayInFull: '10 de outubro', visitors: 100 },
+  { day: 11, dayInFull: '11 de outubro', visitors: 89 },
+  { day: 12, dayInFull: '12 de outubro', visitors: 47 },
+  { day: 13, dayInFull: '13 de outubro', visitors: 65 },
+  { day: 14, dayInFull: '14 de outubro', visitors: 41 },
+  { day: 15, dayInFull: '15 de outubro', visitors: 77 },
+  { day: 16, dayInFull: '16 de outubro', visitors: 90 },
+  { day: 17, dayInFull: '17 de outubro', visitors: 150 },
+  { day: 18, dayInFull: '18 de outubro', visitors: 40 },
 ]
+
+// Adicione este componente customizado antes do export
+const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+        const dayInFull = payload[0].payload.dayInFull;
+        return (
+            <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-3 space-y-2 px-3 py-3">
+                <p className="text-sm font-normal text-gray-700">
+                    {dayInFull}
+                </p>
+                <p className="flex flex-row text-sm gap-2">
+                    <HugeiconsIcon icon={UserMultiple02Icon} className='text-gray-400 w-4 h-4'/>
+                    <span className="font-normal text-gray-400 text-xs">{payload[0].value} visitantes</span> 
+                </p>
+            </div>
+        );
+    }
+    return null;
+};
 
 export function VisitorsChart() {
     return (
-       <Card className="w-full h-full shadow-none rounded-xl">
-            <CardHeader>
-                <CardTitle className='text-base font-medium'>Visitantes</CardTitle>
-                <CardDescription>
-                    Número de visitantes ao longo do tempo
-                </CardDescription>
+       <Card className="w-full h-full shadow-none rounded-xl space-y-0 justify-center">
+            <CardHeader className='flex flex-row justify-between pt-[24px] px-[24px]'>
+                <CardTitle className='text-base font-medium justify-start'>Visitantes</CardTitle>
+                <div className='flex flex-row justify-center text-right text-sm gap-2 text-gray-500'>
+                    <HugeiconsIcon icon={Calendar04Icon} className='text-sky-400 w-5 h-5'/>
+                    9 de outubro - 10 de outubro
+                </div>
             </CardHeader>
 
-            <CardContent>
-                <ResponsiveContainer width="100%" height={240}>
-                    <LineChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
+            <CardContent className='justify-center pl-0'>
+                <ResponsiveContainer width="100%" height={240} className='justify-start'>
+                    <LineChart data={data} margin={{ top: 5, right: 30, left: 0, bottom: 15 }} className='font-medium'>
+                        <CartesianGrid strokeDasharray="10 5" vertical={false} stroke="#f6e7e0"/>
                         <XAxis 
                             dataKey="day" 
                             axisLine={false} 
                             tickLine={false}
                             tick={{ fontSize: 12 }}
+                            dy={16}
+                            stroke={colors.gray[400]}
                         />
                         <YAxis 
                             axisLine={false} 
                             tickLine={false}
                             tick={{ fontSize: 12 }}
+                            stroke={colors.gray[400]}
                         />
-                        <Tooltip />
+                        <Tooltip content={<CustomTooltip />} />
                         <Line 
                             type="monotone" 
                             dataKey="visitors" 
-                            stroke="#3b82f6" 
+                            stroke={colors.sky[400]}
                             strokeWidth={2}
-                            dot={{ fill: '#3b82f6', r: 4 }}
+                            dot={false}
                             activeDot={{ r: 6 }}
                         />
                     </LineChart>
