@@ -6,11 +6,13 @@ import { AuthLayout } from "./pages/_layouts/auth";
 import { SignUp } from "./pages/auth/sing-up";
 import { Products } from "./pages/app/products/products";
 import { ProductDetail } from "./pages/app/products/product-detail";
+import { NotFound } from "./pages/404";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <AppLayout />,
+        errorElement: <NotFound />,
         children: [
             { path: '/', element: <Dashboard /> },
             { path: '/products', element: <Products /> },
