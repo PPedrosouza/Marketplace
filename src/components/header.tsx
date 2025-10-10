@@ -7,6 +7,7 @@ import { ChartHistogramIcon } from '@hugeicons/core-free-icons';
 import { PlusSignIcon } from '@hugeicons/core-free-icons';
 import { Button } from './ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Link } from 'react-router-dom';
 
 export function Header() {
     return (
@@ -26,10 +27,12 @@ export function Header() {
                 </nav>
 
                 <div className='ml-auto flex items-center gap-4'>
-                    <Button className="bg-orange-500 w-[157px] h-[40px]">
-                        <HugeiconsIcon icon={PlusSignIcon} size={24} color="currentColor" />
-                        Novo Produto
-                    </Button>
+                    <Link to="/products/create">
+                        <Button className="bg-orange-500 w-[157px] h-[40px]">
+                            <HugeiconsIcon icon={PlusSignIcon} size={24} color="currentColor" />
+                            Novo Produto
+                        </Button>
+                    </Link>
 
                     <Avatar className='h-10 w-10 rounded-xl border-1 border-gray-100'>
                         <AvatarImage

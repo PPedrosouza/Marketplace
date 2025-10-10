@@ -1,15 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
-import { HugeiconsIcon } from '@hugeicons/react';
-import { ArrowLeft02Icon, Cancel01Icon, Tick02Icon, UnavailableIcon, TagIcon, SaleTag01Icon, Store01Icon, UserMultipleIcon, UserMultiple02Icon } from '@hugeicons/core-free-icons';
-
 import { ProductsSoldCard } from './products-sold-card';
 import { ProductsAdvertisedCard } from './products-adversited-card';
 import { VisitorsCard } from './visitors-card';
-import { VisitorsGraphCard } from './visitors-graph-card';
+import { VisitorsChartCard } from './visitors-chart-card';
 
 export function Dashboard() {
     return <>
@@ -22,16 +16,14 @@ export function Dashboard() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-2">
-                {/* Coluna dos 3 cards empilhados */}
                 <div className="flex flex-col gap-2">
                     <ProductsSoldCard />
                     <ProductsAdvertisedCard />
                     <VisitorsCard />
                 </div>
 
-                {/* Card que ocupa toda a altura ao lado */}
                 <div className="col-span-2 min-h-full">
-                    <VisitorsGraphCard />
+                    <VisitorsChartCard />
                 </div>
             </div>
         </div>

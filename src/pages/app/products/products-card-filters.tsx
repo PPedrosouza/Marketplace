@@ -15,7 +15,7 @@ import { useState } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Cancel01Icon, Search01Icon, TagIcon } from "@hugeicons/core-free-icons"
 
-export function ProductCardFilters() {
+export function ProductsCardFilters() {
     const { register, formState: { isSubmitting }, watch } = useForm()
     const [selectedStatus, setSelectedStatus] = useState<string>("")
     const keywordValue = watch("keyword")

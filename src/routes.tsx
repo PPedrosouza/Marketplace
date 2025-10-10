@@ -5,7 +5,8 @@ import { AppLayout } from "./pages/_layouts/app";
 import { AuthLayout } from "./pages/_layouts/auth";
 import { SignUp } from "./pages/auth/sing-up";
 import { Products } from "./pages/app/products/products";
-import { ProductDetail } from "./pages/app/products/product-detail";
+import { ProductsEdit } from "./pages/app/products/products-edit";
+import { ProductsCreate } from "./pages/app/products/products-create";
 import { NotFound } from "./pages/404";
 
 export const router = createBrowserRouter([
@@ -16,7 +17,8 @@ export const router = createBrowserRouter([
         children: [
             { path: '/', element: <Dashboard /> },
             { path: '/products', element: <Products /> },
-            { path: '/products/:id', element: <ProductDetail /> },
+            { path: '/products/create', element: <ProductsCreate /> },
+            { path: '/products/:id', element: <ProductsEdit /> },
         ]
     },
     {
